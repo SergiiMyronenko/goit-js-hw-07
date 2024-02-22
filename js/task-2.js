@@ -1,44 +1,60 @@
-function calcAverageCalories(days) {
-let total = 0;
-let average = 0;
+// Додавання стилів для галереї
+const style = document.createElement('style');
+style.textContent = `
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 1128px; /* Фіксована ширина галереї */
+    height: 300px; /* Фіксована висота галереї */
+  }
+  .gallery li {
+    flex-basis: calc(33.333% - 20px); 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+  .gallery img {
+    width: 100%; 
+    height: auto; 
+    max-width: 100%;
+    
+  }
+`;
+document.head.appendChild(style);
 
-for(const day of days){
-    total += day.calories;
-  } 
-  if(days.length === 0){;
-     return 0;
-}
+// Дані для галереї
+const images = [
+  {
+    url: "https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?dpr=2&h=750&w=1260",
+    alt: "White and Black Long Fur Cat",
+  },
+  {
+    url: "https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?dpr=2&h=750&w=1260",
+    alt: "Orange and White Koi Fish Near Yellow Koi Fish",
+  },
+  {
+    url: "https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?dpr=2&h=750&w=1260",
+    alt: "Group of Horses Running",
+  },
+];
 
-else{average = total / days.length;}
+// Створення та додавання галереї
+const galleryEl = document.querySelector('.gallery');
+const markup = images.map(({url, alt}) => `<li><img src="${url}" alt="${alt}"></li>`).join('');
+galleryEl.insertAdjacentHTML('beforeend', markup);
 
-return average;
-    } 
+//вирівнювання висоти фотографій
+window.addEventListener('load', () => {
+  const galleryImages = document.querySelectorAll('.gallery img');
+  const galleryHeight = '300px'; // Висота галереї
 
-
-console.log(
-    calcAverageCalories([
-      { day: "monday", calories: 3010 },
-      { day: "tuesday", calories: 3200 },
-      { day: "wednesday", calories: 3120 },
-      { day: "thursday", calories: 2900 },
-      { day: "friday", calories: 3450 },
-      { day: "saturday", calories: 3280 },
-      { day: "sunday", calories: 3300 }
-    ])
-  ); // 3180
-
-  console.log(
-    calcAverageCalories([
-      { day: "monday", calories: 2040 },
-      { day: "tuesday", calories: 2270 },
-      { day: "wednesday", calories: 2420 },
-      { day: "thursday", calories: 1900 },
-      { day: "friday", calories: 2370 },
-      { day: "saturday", calories: 2280 },
-      { day: "sunday", calories: 2610 }
-    ])
-  ); // 2270
-  
-  console.log(
-    calcAverageCalories([])
-  ); // 0
+  galleryImages.forEach(img => {
+    img.style.height = galleryHeight;
+  });
+});

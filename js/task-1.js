@@ -1,36 +1,16 @@
-function isEnoughCapacity(products, containerSize) {
- 
-    let total = 0;
-    
-    for(const product of Object.values(products)) {
-       
-        total += (Number(product));
-}
-            
-        if(total <= containerSize){
-            return true;
-                    } else return false;
 
-                    
-    } 
+const categories = document.querySelectorAll("#categories .item");
 
-    console.log(
-        isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8)
-      ); // true
-      
-      console.log(
-        isEnoughCapacity({ apples: 4, grapes: 6, lime: 16 }, 12)
-      ); // false
-      
-      console.log(
-        isEnoughCapacity({ apples: 1, lime: 5, tomatos: 3 }, 14)
-      ); // true
-      
-      console.log(
-        isEnoughCapacity({ apples: 18, potatos: 5, oranges: 2 }, 7)
-      ); // false
-  
-  
-      
+console.log(`Number of categories: ${categories.length}`);
 
-  
+categories.forEach(category=> {
+    const headerText = category.querySelector('h2').textContent;
+    const countHeaders = category.querySelectorAll('ul li').length;
+    console.log(`Category: ${headerText}`);
+    console.log(`Elements: ${countHeaders}`);
+});
+
+
+
+
+

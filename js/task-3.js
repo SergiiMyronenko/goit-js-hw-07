@@ -1,23 +1,19 @@
-const profile = {
-    username: "Jacob",
-  playTime: 300,
-  changeUsername(newName){
-    this.username = newName;
-  },
-  updatePlayTime(hours) {
-    this.playTime = this.playTime + hours;
-  },
+// посилання на елементи, значення яких буде змінюватись
+const input = document.getElementById("name-input");
+const output = document.getElementById("name-output");
 
-  getInfo(){
-return `${this.username} has ${this.playTime} active hours!`
-  },
+// додаємо подію
+input.addEventListener('input', function() {
+//trmming
 
-};
+const trimmedInput = this.value.trim();
 
-console.log(profile.getInfo()); // "Jacob has 300 active hours!"
+// 
 
-profile.changeUsername("Marco");
-console.log(profile.getInfo()); // "Marco has 300 active hours!"
+if(trimmedInput) {
+    output.textContent = trimmedInput;
+} else {
+    output.textContent = "Anonymous";
+}
 
-profile.updatePlayTime(20);
-console.log(profile.getInfo()); // "Marco has 320 active hours!"
+})
